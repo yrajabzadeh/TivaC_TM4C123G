@@ -3,6 +3,11 @@
 
 ### Labwork for SF State ENGR 478 ###
 
+#### Lab 2 ####
+* Add a new function to the sample program (sim) which compares the values of NUM1 and NUM2 and stores the larger value into a new variable bit LARGER. You need to:
+  * Define a new 32-bit LARGER
+  * Design a subroutine GET_LARGER, draw the flowchart of the subroutine, and write assembly code to implement this subroutine.
+  
 #### Lab 3 ####
 * Modify the C program in the project my_switch created by yourself in Section C. In the modified system, when SW2 (connected with PF0) is pressed, the red LED (connected with PF1) is turned off, otherwise the red LED is on.
   * The flow chart of the system 
