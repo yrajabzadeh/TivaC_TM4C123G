@@ -1,7 +1,7 @@
 # TivaC_TM4C123G
-GitHub :octocat: Codes for Texas Instruments EK-TM4C123GXL Launchpad :alien:
+### GitHub :octocat: Codes for Texas Instruments EK-TM4C123GXL Launchpad :alien: ###
 
-Labs done for SF State ENGR 478
+### Labwork for SF State ENGR 478 ###
 
 #### Lab 3 ####
 * Modify the C program in the project my_switch created by yourself in Section C. In the modified system, when SW2 (connected with PF0) is pressed, the red LED (connected with PF1) is turned off, otherwise the red LED is on.
