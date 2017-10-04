@@ -19,3 +19,8 @@
   * Explanation of your modifications 
   * The C program listing with detailed comments for each line of code.
   * The execution results of your program (your observations).
+
+#### Lab 4 ####
+* Create and implement two new projects my_switch_PinMux and my_toggle_PinMux, which perform the same functions as my_switch and my_toggle did, respectively. my_switch and my_toggle are the two projects you implemented in Lab 3. In my_switch_PinMux, when SW2 (connected with PF0) is pressed, the red LED (connected with PF1) is turned off, otherwise the red LED is on. my_toggle_PinMux makes the green LED (connected with PF3) flash. In this lab, you have to use PinMux to initialize the ports and use GPIOPinRead/GPIOPinWrite functions to configure the GPIO data registers. In your lab report, for each project, please include the following:
+  * The C program listing with detailed comments for each line of code.
+  * The execution results of your program (your observations).
