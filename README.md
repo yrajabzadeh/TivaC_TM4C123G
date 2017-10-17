@@ -26,6 +26,6 @@
   * The execution results of your program (your observations).
   
   #### Lab 5 ####
-* The system has one input switch (SW1) and two output LEDs (red and blue LEDs). Overall functionality of this system is described in the following rules. 
+* The system has one input switch (SW1) and two output LEDs (red and blue LEDs). Overall functionality of this system is described in the following rules. Included in the lab work is a flowchart.
   * If SW1 is pressed, then the blue LED will be turned off, and the red LED will be toggled every half second. 
   * If SW1 is not pressed, then the red LED will be off, and the blue LED will be toggled every half second. Basically you need to figure out which IO ports you need to configure, and how to configure them. You also need to know how to implement specific delay, looping, and if/then. 
