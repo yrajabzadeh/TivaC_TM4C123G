@@ -20,34 +20,35 @@
 void
 PortFunctionInit(void)
 {
-//
-		volatile uint32_t ui32Loop;   
-	// Enable the GPIO port that is used for the on-board LED.
-    //
-    SYSCTL_RCGC2_R = SYSCTL_RCGC2_GPIOF;
 
+		volatile uint32_t ui32Loop;
+   
+		// Enable the GPIO port that is used for the on-board LED.
+    SYSCTL_RCGC2_R = SYSCTL_RCGC2_GPIOF;
+	
     //
     // Do a dummy read to insert a few cycles after enabling the peripheral.
     //
+	
     ui32Loop = SYSCTL_RCGC2_R;
 	
 		// Unlock GPIO Port F
 		GPIO_PORTF_LOCK_R = 0x4C4F434B;   
 		
-		// allow changes to PF0
-		GPIO_PORTF_CR_R |= 0x01;
+		// allow changes to PF4
+		GPIO_PORTF_CR_R |= 0x10;
 
 		// Set the direction of PF2 (BLUE LED) as output
     GPIO_PORTF_DIR_R |= 0x04;
 	
-		// Set the direction of PF0 (SW2) as input by clearing the bit
-    GPIO_PORTF_DIR_R &= ~0x01;
+		// Set the direction of PF4 (SW1) as input by clearing the bit
+    GPIO_PORTF_DIR_R &= ~0x10;
 	
-    // Enable both PF2 and PF0 for digital function.
-    GPIO_PORTF_DEN_R |= 0x03;
+    // Enable both PF2 and PF4 for digital function.
+    GPIO_PORTF_DEN_R |= 0x14;
 	
-		//Enable pull-up on PF0
-		GPIO_PORTF_PUR_R |= 0x01;
+		//Enable pull-up on PF4
+		GPIO_PORTF_PUR_R |= 0x10;
 
     //
     // Enable the GPIO pin for the BLUE LED (PF2) and RED LED (PF 1)
@@ -72,12 +73,12 @@ int main(void)
     //
     while(1)
     {
-			if ((GPIO_PORTF_DATA_R&0x01)==0x00)// SW2 is pressed
+			if ((GPIO_PORTF_DATA_R&0x10)==0x00)// SW1 is pressed
 			{
 				GPIO_PORTF_DATA_R &= 0x02;
         // Delay
 				//sets number of cycles
-				SysCtlDelay(900000);	
+				SysCtlDelay(1345096);	
         // Toggle the LED.
         GPIO_PORTF_DATA_R ^=RED_MASK;
 			}
@@ -86,7 +87,7 @@ int main(void)
 				GPIO_PORTF_DATA_R &= 0x04;
         // Delay
 				//sets number of cycles
-				SysCtlDelay(900000);	
+				SysCtlDelay(1345096);	
         // Toggle the LED.
         GPIO_PORTF_DATA_R ^=BLUE_MASK;
 			}
