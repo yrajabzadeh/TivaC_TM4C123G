@@ -1,13 +1,13 @@
 #include <stdint.h>
 #include <stdbool.h>
-#include "lab5.h"
-#include "inc/hw_types.h"
-#include "inc/hw_memmap.h"
-#include "inc/hw_gpio.h"
+#include "inc/tm4c123gh6pm.h"
 #include "driverlib/sysctl.h"
-#include "driverlib/pin_map.h"
-#include "driverlib/rom_map.h"
-#include "driverlib/gpio.h"
+#include "inc/hw_types.h"
+#include "inc/hw_gpio.h"
+#include "inc/hw_memmap.h"
+
+#define		RED_MASK		0x02
+#define		BLUE_MASK		0x04
 
 //*****************************************************************************
 // Objectives
@@ -15,55 +15,80 @@
 // 1) If SW1 is pressed, then the blue LED will be turned off, and the red LED will be toggled every half second. 
 // 2) If SW1 is not pressed, then the red LED will be off, and the blue LED will be toggled every half second. 
 //
-//
 //*****************************************************************************
 
 void
 PortFunctionInit(void)
 {
+//
+		volatile uint32_t ui32Loop;   
+	// Enable the GPIO port that is used for the on-board LED.
     //
-    // Enable Peripheral Clocks 
+    SYSCTL_RCGC2_R = SYSCTL_RCGC2_GPIOF;
+
     //
-    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
+    // Do a dummy read to insert a few cycles after enabling the peripheral.
     //
+    ui32Loop = SYSCTL_RCGC2_R;
+	
+		// Unlock GPIO Port F
+		GPIO_PORTF_LOCK_R = 0x4C4F434B;   
+		
+		// allow changes to PF0
+		GPIO_PORTF_CR_R |= 0x01;
+
+		// Set the direction of PF2 (BLUE LED) as output
+    GPIO_PORTF_DIR_R |= 0x04;
+	
+		// Set the direction of PF0 (SW2) as input by clearing the bit
+    GPIO_PORTF_DIR_R &= ~0x01;
+	
+    // Enable both PF2 and PF0 for digital function.
+    GPIO_PORTF_DEN_R |= 0x03;
+	
+		//Enable pull-up on PF0
+		GPIO_PORTF_PUR_R |= 0x01;
+
     //
+    // Enable the GPIO pin for the BLUE LED (PF2) and RED LED (PF 1)
     //
-    HWREG(GPIO_PORTF_BASE + GPIO_O_LOCK) = GPIO_LOCK_KEY;
-    HWREG(GPIO_PORTF_BASE + GPIO_O_CR) = 0x1;
-    //
-    //Enable pin PF4 for GPIOInput 
-    //
-    MAP_GPIOPinTypeGPIOInput(GPIO_PORTF_BASE, GPIO_PIN_4);
-    //
-    // Enable pin PF1 for GPIOOutput
-    //
-    MAP_GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1);
-		//
-		// Enable pin PF2 for GPIOOutput
-		//
-		MAP_GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2);
+		
+    GPIO_PORTF_DIR_R |= 0x04;
+    GPIO_PORTF_DEN_R |= 0x04;
+		
+		GPIO_PORTF_DIR_R |= 0x02;
+    GPIO_PORTF_DEN_R |= 0x02;
+
 }
+
+
 int main(void)
 {
 	
 		//initialize the GPIO ports	
 		PortFunctionInit();
-	
     //
-    // Loop forever.
+    // while loop
     //
     while(1)
     {
-
-        if(GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_4)==0x00) //SW2 is pressed
-				{
-						// LED OFF
-						GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, 0x00);
-				}
-				else
-				{
-						// LED ON
-						GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, 0x02);
-				}
+			if ((GPIO_PORTF_DATA_R&0x01)==0x00)// SW2 is pressed
+			{
+				GPIO_PORTF_DATA_R &= 0x02;
+        // Delay
+				//sets number of cycles
+				SysCtlDelay(900000);	
+        // Toggle the LED.
+        GPIO_PORTF_DATA_R ^=RED_MASK;
+			}
+			else
+			{
+				GPIO_PORTF_DATA_R &= 0x04;
+        // Delay
+				//sets number of cycles
+				SysCtlDelay(900000);	
+        // Toggle the LED.
+        GPIO_PORTF_DATA_R ^=BLUE_MASK;
+			}
     }
 }

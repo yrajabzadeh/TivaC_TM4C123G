@@ -1,14 +1,11 @@
 Dependencies for Project 'lab5', Target 'Target 1': (DO NOT MODIFY !)
 F (.\startup_rvmdk.S)(0x540D5101)(--cpu Cortex-M4.fp --pd "__EVAL SETA 1" -g --apcs=interwork -IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\TI\TM4C123--pd "__UVISION_VERSION SETA 524"--list .\listings\startup_rvmdk.lst --xref -o .\objects\startup_rvmdk.o --depend .\objects\startup_rvmdk.d)
 F (..\..\..\..\driverlib\rvmdk\driverlib.lib)(0x59C9429A)()
-F (.\lab5.c)(0x59DD993C)(--c99 -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\..\..\.. --c99-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\TI\TM4C123-D__UVISION_VERSION="524" -Drvmdk -DPART_TM4C123GH6PM -DTM4C123GH6PM-o .\objects\lab5.o --omf_browse .\objects\lab5.crf --depend .\objects\lab5.d)
+F (.\lab5.c)(0x59E6A0F9)(--c99 -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\..\..\.. --c99-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\TI\TM4C123-D__UVISION_VERSION="524" -Drvmdk -DPART_TM4C123GH6PM -DTM4C123GH6PM-o .\objects\lab5.o --omf_browse .\objects\lab5.crf --depend .\objects\lab5.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588C5634)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588C5634)
-I (lab5.h)(0x59DD82DA)
-I (..\..\..\..\inc/hw_types.h)(0x59C942F8)
-I (..\..\..\..\inc/hw_memmap.h)(0x59C942F8)
-I (..\..\..\..\inc/hw_gpio.h)(0x59C942F8)
+I (..\..\..\..\inc/tm4c123gh6pm.h)(0x59C942F9)
 I (..\..\..\..\driverlib/sysctl.h)(0x59C9429A)
-I (..\..\..\..\driverlib/pin_map.h)(0x59C9429A)
-I (..\..\..\..\driverlib/rom_map.h)(0x59C9429A)
-I (..\..\..\..\driverlib/gpio.h)(0x59C9429A)
+I (..\..\..\..\inc/hw_types.h)(0x59C942F8)
+I (..\..\..\..\inc/hw_gpio.h)(0x59C942F8)
+I (..\..\..\..\inc/hw_memmap.h)(0x59C942F8)
