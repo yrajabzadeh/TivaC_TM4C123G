@@ -36,9 +36,9 @@
 The system has two input switches (SW1 (PF4) and SW2 (PF0)) and two output LEDs
 (red (PF1) and blue (PF2) LEDs). Overall functionality of this system is described in the
 following rules:
-     1) The red LED is used to display bit 0 of the counter; the blue LED is used to display bit 1.
-     2) The system starts with the counter equal to 0.
-     3) If SW1 is pressed, the counter is incremented by 1; If SW2 is pressed, the counter is decremented by 1. Both SW1 and SW2 generate edge-triggered interrupts to update the counter.
+     * The red LED is used to display bit 0 of the counter; the blue LED is used to display bit 1.
+     * The system starts with the counter equal to 0.
+     * If SW1 is pressed, the counter is incremented by 1; If SW2 is pressed, the counter is decremented by 1. Both SW1 and SW2 generate edge-triggered interrupts to update the counter.
   * Software on Device B: The system has one input port (PA7) and one output port (PF3, green LED). Overall functionality of this system is described in the following rules. 
-     1) The system starts with the green LED off. 
-     2) The value change on PA7 generates edge-triggered interrupt to toggle PF3. When the value on PA7 changes from 1 to 0 or from 0 to 1 (the value of PA7 on Device B changes with the value of PF2 on Device A), the green LED will be toggled once.
+     * The system starts with the green LED off. 
+     * The value change on PA7 generates edge-triggered interrupt to toggle PF3. When the value on PA7 changes from 1 to 0 or from 0 to 1 (the value of PA7 on Device B changes with the value of PF2 on Device A), the green LED will be toggled once.
