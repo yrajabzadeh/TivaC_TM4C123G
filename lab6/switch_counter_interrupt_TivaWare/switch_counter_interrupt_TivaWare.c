@@ -116,13 +116,24 @@ int main(void)
     //
     while(1)
     {
-			if ((GPIO_PORTF_DATA_R&0x10)==0x00)// SW1 is pressed
+			if (count==0)
+			{
+				GPIO_PORTF_DATA_R &= ~0x06;
+			}
+			if (count==1)
 			{
 				GPIO_PORTF_DATA_R &= 0x02;
 				GPIO_PORTF_DATA_R ^=RED_MASK;
 			}
-			if ((GPIO_PORTF_DATA_R&0x01)==0x00) //SW2 is pressed
+			if (count==2)
 			{
+				GPIO_PORTF_DATA_R &= 0x04;
+				GPIO_PORTF_DATA_R ^=BLUE_MASK;
+			}
+			if (count==3)
+			{
+				GPIO_PORTF_DATA_R &= 0x02;
+				GPIO_PORTF_DATA_R ^=RED_MASK;
 				GPIO_PORTF_DATA_R &= 0x04;
 				GPIO_PORTF_DATA_R ^=BLUE_MASK;
 			}
