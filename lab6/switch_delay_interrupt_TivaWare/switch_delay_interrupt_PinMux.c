@@ -71,7 +71,7 @@ PortFunctionInit(void)
     //
     // Enable pin PF3 for GPIOOutput
     //
-    MAP_GPIOPinTypeGPIOOutput(GPIO_PORTA_BASE, GPIO_PIN_3); // GREEN
+    MAP_GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_3); // GREEN LED
 
     //
     // Enable pin PA7 for GPIOInput
@@ -103,7 +103,7 @@ void
 Interrupt_Init(void)
 {
   IntEnable(INT_GPIOA);  							// enable interrupt 30 in NVIC (GPIOF)
-	IntPrioritySet(INT_GPIOA, 0x00); 		// configure GPIOF interrupt priority as 0
+	IntPrioritySet(INT_GPIOA, 0x00); 		// configure GPIOA interrupt priority as 0
 	GPIO_PORTA_IM_R |= 0x80;   					// arm interrupt on PF0
 	GPIO_PORTA_IS_R &= ~0x80;     			// PA7 is edge-sensitive
   GPIO_PORTA_IBE_R |= 0x80;   				// PA7 both edges trigger 

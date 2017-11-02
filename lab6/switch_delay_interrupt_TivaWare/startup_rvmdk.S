@@ -77,7 +77,7 @@ __heap_limit
 ; External declarations for the interrupt handlers used by the application.
 ;
 ;******************************************************************************
-        EXTERN  GPIOPortF_Handler
+        EXTERN  GPIOPortA_Handler
 ;******************************************************************************
 ;
 ; The vector table.
@@ -101,7 +101,7 @@ __Vectors
         DCD     0                           ; Reserved
         DCD     IntDefaultHandler           ; The PendSV handler
         DCD     IntDefaultHandler           ; The SysTick handler
-        DCD     IntDefaultHandler           ; GPIO Port A
+        DCD     GPIOPortA_Handler           ; GPIO Port A
         DCD     IntDefaultHandler           ; GPIO Port B
         DCD     IntDefaultHandler           ; GPIO Port C
         DCD     IntDefaultHandler           ; GPIO Port D
@@ -131,7 +131,7 @@ __Vectors
         DCD     IntDefaultHandler           ; Analog Comparator 2
         DCD     IntDefaultHandler           ; System Control (PLL, OSC, BO)
         DCD     IntDefaultHandler           ; FLASH Control
-        DCD     GPIOPortF_Handler           ; GPIO Port F
+        DCD     IntDefaultHandler           ; GPIO Port F
         DCD     IntDefaultHandler           ; GPIO Port G
         DCD     IntDefaultHandler           ; GPIO Port H
         DCD     IntDefaultHandler           ; UART2 Rx and Tx
