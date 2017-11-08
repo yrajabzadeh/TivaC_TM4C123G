@@ -116,24 +116,20 @@ int main(void)
     //
     while(1)
     {
-	    		// LED OFF
 			if (count==0)
 			{
 				GPIO_PORTF_DATA_R &= ~0x06;
 			}
-	    		// RED LED ON
 			if (count==1)
 			{
 				GPIO_PORTF_DATA_R &= 0x02;
 				GPIO_PORTF_DATA_R ^=RED_MASK;
 			}
-	    		// BLUE LED ON
 			if (count==2)
 			{
 				GPIO_PORTF_DATA_R &= 0x04;
 				GPIO_PORTF_DATA_R ^=BLUE_MASK;
 			}
-	    		// RED + BLUE LED ON
 			if (count==3)
 			{
 				GPIO_PORTF_DATA_R &= 0x02;
