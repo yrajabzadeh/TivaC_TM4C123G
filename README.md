@@ -42,3 +42,17 @@ following rules:
   * Software on Device B: The system has one input port (PA7) and one output port (PF3, green LED). Overall functionality of this system is described in the following rules. 
      * The system starts with the green LED off. 
      * The value change on PA7 generates edge-triggered interrupt to toggle PF3. When the value on PA7 changes from 1 to 0 or from 0 to 1 (the value of PA7 on Device B changes with the value of PF2 on Device A), the green LED will be toggled once.
+
+#### Lab 7 ####
+* Implement a 2-bit rotary counter on the TM4C microcontroller. The counter is controlled by two types of interrupts simultaneously. 1) Edge-triggered interrupt – the counter is incremented by 1 when SW1 is pressed and decremented by 1 when SW2 is pressed. 2) Periodic interrupt – the counter is incremented by 1 periodically every 1 second. The periodic interrupt has a higher priority than the edge-triggered interrupts. Two on-board LEDs are used to display the counter.
+* System Requirements: The system has two input switches (SW1 (PF4) and SW2 (PF0)) and two output LEDs (red (PF1) and blue (PF2) LEDs). Overall functionality of this system is described in the following rules.
+     * The red LED is used to display bit 0 of the counter; the blue LED is used to display bit 1.
+     * The system starts with the counter equal to 0. 
+     * The counter increments by 1 every one second. The general purpose timer TIMER0 is used to generate this periodic one second delay and periodic interrupt. The counter is updated by the interrupt. The priority of the periodic interrupt is 0.
+     * If SW1 is pressed, the counter is incremented by 1; If SW2 is pressed, the counter is decremented by 1. Both SW1 and SW2 generate edge-triggered interrupts to update the counter. The priority of the edge-triggered interrupt is 2.
+
+#### Lab 8 ####
+* The system consists of two LaunchPads as shown in Figure 1. Device A and Device B are communicated via the UART1 modules. The UART1 Tx port PB1 on Device A is connected with the UART1 Rx port PB0 on Device B. The ground pins on both devices are also connected.
+You need to develop two software projects in this lab, one for each device.
+     * Software on Device A: The system is based on the switch_counter_interrupt_TivaWare project. The system has two input switches (SW1 (PF4) and SW2 (PF0)). When either SW1 or SW2 is pressed, a global variable ‘count’ is incremented by 1 using edge-triggered interrupt. Then the updated value of ‘count’ is transmitted to Device B via the UART1 module.
+     * Software on Device B: The system receives serial inputs from Device A via the UART1 module. Whenever there is data available on the UART1 Rx pin, a UART1 RX interrupt is generated. In the interrupt service routine, the processor reads the received data from the UART1 module and then sends the data to the TeraTerm terminal via the UART0 module.
