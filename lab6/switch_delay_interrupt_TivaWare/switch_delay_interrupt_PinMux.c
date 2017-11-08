@@ -82,7 +82,7 @@ PortFunctionInit(void)
     //First open the lock and select the bits we want to modify in the GPIO commit register.
     //
     HWREG(GPIO_PORTA_BASE + GPIO_O_LOCK) = GPIO_LOCK_KEY;
-    HWREG(GPIO_PORTA_BASE + GPIO_O_CR) = 0x1;
+    HWREG(GPIO_PORTA_BASE + GPIO_O_CR) = 0x80;
 
     //
     //Now modify the configuration of the pins that we unlocked.
@@ -94,7 +94,7 @@ PortFunctionInit(void)
 		//  The code below should be manually added by the programmer
 		//*************************************************************
 		
-		//Enable pull-up on PF0
+		//Enable pull-up
 		GPIO_PORTA_PUR_R |= 0x01; 
 		
 }
@@ -115,7 +115,7 @@ Interrupt_Init(void)
 void GPIOPortA_Handler(void){
   GPIO_PORTA_ICR_R |= 0x80;      // acknowledge flag for PA7
 	
-	if(GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_7)==0x01)	//SW2 is pressed
+	if(GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_7)==0x80)	//SW2 is pressed
 	{
 			GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0x08); //turn on GREEN LED
 	}
